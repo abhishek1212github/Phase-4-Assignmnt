@@ -1,0 +1,58 @@
+<div class="container ">
+    <h1 class="text-center p-3 mb-2 bg-success text-white">Mathematics MCQ Test</h1>
+    <form #selected="ngForm" (ngSubmit)="checkAnswer(selected)">
+    <div *ngFor="let q of questions;let i=index">
+        <p>{{i+1}} ) {{q.question}}</p>
+        <div *ngFor="let o of q.op">
+            <input type="radio" name="{{i+1}}" value="{{o}}" ngModel>{{o}}
+        </div><br>
+    </div>
+    <input type="submit" class="btn btn-success" value="submit">
+</form>
+<br>
+    <div class="card text-center"  *ngIf="flag">
+        <div class="card-header">
+          EXAM RESULT
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Correct Attempt={{correctAns}}</h5>
+          <h5 class="card-title">Incorrect Attempt={{incorrectAns}}</h5>
+          <input type="button" value="Review" (click)="Review()" class="btn btn-primary" ><br><br>
+        </div>
+        
+      </div>
+<br><br>
+
+
+<div *ngIf="submitted">
+    <h6>Review the correct Answer of all the question and your attemps!</h6>
+    <table  border="2" class="table table-striped text-center">
+        <thead class="thead-dark">
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              <th scope="col">Question</th>
+              <th scope="col">CorrectAns</th>
+              <th scope="col">Attempted</th>
+            </tr>
+        </thead>
+          <tbody>
+            <!-- <div *ngFor="let n of questions;">
+                <tr>
+                    <td></td>
+                    <td>{{n.ans}}</td>
+                    <td>{{n.attempt}}</td>
+                </tr>
+                
+            </div> -->
+            <tr *ngFor="let n of questions;">
+                
+                <td>{{n.question}}</td>
+                <td>{{n.ans}}</td>
+                <td>{{n.attempt}}</td>
+              </tr>
+          </tbody>
+
+    </table>
+</div>
+</div>
+ 
